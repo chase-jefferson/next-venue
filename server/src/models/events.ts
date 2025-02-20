@@ -4,6 +4,7 @@ interface EventAttributes {
   id: number;
   eventName: string;
   description: string;
+  location: string;
   date: Date;
   time: string;
   createdBy: string;
@@ -18,6 +19,7 @@ export class Event
   public id!: number;
   public eventName!: string;
   public description!: string;
+  public location!: string;
   public date!: Date;
   public time!: string;
   public createdBy!: string;
@@ -30,8 +32,9 @@ export function EventFactory(sequelize: Sequelize): typeof Event {
   Event.init(
     {
       id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
+        defaultValue: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
       },
       eventName: {
@@ -43,6 +46,10 @@ export function EventFactory(sequelize: Sequelize): typeof Event {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       date: {
         type: DataTypes.DATEONLY,
         allowNull: false,
@@ -51,7 +58,7 @@ export function EventFactory(sequelize: Sequelize): typeof Event {
         type: DataTypes.TIME
       },
       createdBy: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: { model: 'users', key: 'id' }, // foreign key to user
         onDelete: 'CASCADE'

@@ -27,18 +27,19 @@ export function RSVPFactory(sequelize: Sequelize): typeof RSVP {
     RSVP.init(
         {
             id: {
-                type: DataTypes.UUID,
-                defaultValue: DataTypes.UUIDV4,
+                type: DataTypes.INTEGER,
+                defaultValue: DataTypes.INTEGER,
+                autoIncrement: true,
                 primaryKey: true,
             },
             userId: {
-                type: DataTypes.UUID,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 references: { model: 'users', key: 'id' },
                 onDelete: 'CASCADE',
               },
               eventId: {
-                type: DataTypes.UUID,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 references: { model: 'events', key: 'id' },
                 onDelete: 'CASCADE',
