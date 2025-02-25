@@ -4,9 +4,8 @@ import "./index.css";
 
 import App from "./App.tsx";
 
-// import ErrorPage from './pages/ErrorPage.tsx';
+import ErrorPage from "./pages/ErrorPage.tsx";
 import Home from "./pages/Home.tsx";
-import UserProfile from "./pages/UserProfile.tsx";
 import Login from "./pages/Login.tsx";
 
 const router = createBrowserRouter([
