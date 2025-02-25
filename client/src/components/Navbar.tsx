@@ -1,42 +1,35 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import auth from '../utils/auth';
+import { useState } from "react";
+import Button from "./Button";
+import { FaUserCircle } from "react-icons/fa";
 
-const Navbar = () => {
-  const [loginCheck, setLoginCheck] = useState(false);
-
-  const checkLogin = () => {
-    if (auth.loggedIn()) {
-      setLoginCheck(true);
-    }
-  };
-
-  useEffect(() => {
-    console.log(loginCheck);
-    checkLogin();
-  }, [loginCheck]);
+const Navbar: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className='display-flex justify-space-between align-center py-2 px-5 mint-green'>
-      <h1>Authentication Review</h1>
-      <div>
-        {!loginCheck ? (
-          <button className='btn' type='button'>
-            <Link to='/login'>Login</Link>
-          </button>
+    <nav className="bg-amber-700 p-4 flex justify-between items-center shadow-md">
+      <div className="text-white text-2xl font-family: 'Poppins', sans-serif italic">
+        Next Venue
+      </div>
+      <div className="flex gap-4">
+        {isLoggedIn ? (
+          <Button className="flex items-center gap-2 bg-orange-500 text-blue-600 hover:bg-gray-100">
+            <FaUserCircle size={20} /> Profile
+          </Button>
         ) : (
-          <button
-            className='btn'
-            type='button'
-            onClick={() => {
-              auth.logout();
-            }}
-          >
-            Logout
-          </button>
+          <>
+            <Button
+              className="bg-amber-300 text-slate-600 hover:bg-amber-800"
+              onClick={() => setIsLoggedIn(true)}
+            >
+              Login
+            </Button>
+            <Button className="bg-amber-400 text-white hover:bg-yellow-800">
+              Register
+            </Button>
+          </>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
