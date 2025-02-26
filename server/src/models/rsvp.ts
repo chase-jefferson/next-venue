@@ -1,58 +1,68 @@
-import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
+import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 
 interface RSVPAttributes {
-    id?: number;
-    eventId: number;
-    userId: number;
-    status: 'Yes' | 'Maybe' | 'No';
-
+  id: number;
+  userId: number;
+  eventId: number;
+  status: 'interested' | 'going' | 'not going';
 }
 
 interface RSVPCreationAttributes extends Optional<RSVPAttributes, 'id'> {}
 
 export class RSVP
-    extends Model<RSVPAttributes, RSVPCreationAttributes>
-    implements RSVPAttributes
+  extends Model<RSVPAttributes, RSVPCreationAttributes>
+  implements RSVPAttributes
 {
-    public id!: number;
-    public eventId!: number;
-    public userId!: number;
-    public status!: 'Yes' | 'Maybe' | 'No';
+  public id!: number;
+  public userId!: number;
+  public eventId!: number;
+  public status!: 'interested' | 'going' | 'not going';
 
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+  public readonly createdAt!: Date;
 }
 
 export function RSVPFactory(sequelize: Sequelize): typeof RSVP {
-    RSVP.init(
-        {
-            id: {
-                type: DataTypes.INTEGER,
-                defaultValue: DataTypes.INTEGER,
-                autoIncrement: true,
-                primaryKey: true,
-            },
-            userId: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                references: { model: 'users', key: 'id' },
-                onDelete: 'CASCADE',
-              },
-              eventId: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                references: { model: 'events', key: 'id' },
-                onDelete: 'CASCADE',
-              },
-              status: {
-                type: DataTypes.ENUM('Yes', 'No', 'Maybe'),
-                allowNull: false,
-              },
+  RSVP.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
         },
-        {
-            tableName: 'rsvps',
-            sequelize,
-        }
-    );
-    return RSVP;
+        onDelete: 'CASCADE',
+      },
+      eventId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'events',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+      },
+      status: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [['interested', 'going', 'not going']],
+        },
+      },
+    },
+    {
+      tableName: 'rsvps', // This corresponds to the name of your table
+      sequelize,
+      timestamps: true,
+      createdAt: 'createdAt',
+      updatedAt: false,
+    }
+  );
+
+  return RSVP;
 }
