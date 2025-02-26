@@ -5,43 +5,76 @@
 The Event Planner & RSVP Manager is a web application that enables users to create, manage, and RSVP to events. The platform integrates OpenAI API for scheduling, OpenWeather API for event-related weather updates, and provides a seamless authentication experience using JWT.
 
 
-## Table of Contents
+```markdown
+# Next Venue
 
-* [Installation](#installation)
+## Overview
+Next Venue is a modern web application built with Next.js, React, and Tailwind CSS. This project aims to provide a seamless user experience for creating and managing events.
 
-* [Usage](#usage)
+## Features
+- 🔹 **Next.js** for server-side rendering and static site generation
+- 🎨 **Tailwind CSS** for modern styling
+- ⚡ **Vite** for fast development
+- 🔐 **Authentication system** (if applicable)
+- 📡 **API Integration** for venue data
+- 🖥️ **Responsive Design** for all devices
 
-* [Contributing](#contributing)
-
-* [Tests](#tests)
-
-* [Questions](#questions)
-
-## Installation
-
-To install necessary dependencies, run the following command:
-
+## Installation & Setup
+### Prerequisites
+Ensure you have **Node.js** and **npm** installed:
+```bash
+node -v  # Check Node.js version
+npm -v   # Check npm version
 ```
-npm i
+### Clone the Repository
+```bash
+git clone https://github.com/chase-jefferson/next-venue.git
+cd next-venue
+```
+### Install Dependencies
+```bash
+npm install
+```
+### Start the Development Server
+```bash
+npm run dev
+```
+The app will run at `http://localhost:3000/`.
+
+## Folder Structure
+```
+next-venue/
+│-- public/      # Static assets
+│-- src/
+│   │-- components/  # Reusable components
+│   │-- pages/       # Next.js pages
+│   │-- styles/      # Tailwind styles
+│   └-- utils/       # Utility functions
+│-- package.json    # Project dependencies
+│-- tailwind.config.js  # Tailwind configuration
+│-- next.config.js  # Next.js configuration
 ```
 
-## Usage
-
-Install dependencies, run the start command, open the application in a prefrred browser.
-
+## Deployment
+To deploy on **Render**:
+1. Create an account on [Render](https://render.com/).
+2. Link your GitHub repository.
+3. Create a new **Web Service** and select your repository.
+4. Set the build command:
+   ```
+   npm install && npm run build
+   ```
+5. Set the start command:
+   ```
+   npm run start
+   ```
+6. Deploy and access your app via the provided Render URL.
 
 ## Contributing
+Pull requests are welcome! Follow these steps:
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit changes: `git commit -m "Added new feature"`
+4. Push the branch: `git push origin feature-name`
+5. Submit a Pull Request
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". To make a contribution, be sure to fork the project, create your feature branch, commit your changes with descriptive messages, push to the main branch, and open a pull request.
-
-## Tests
-
-To run tests, run the following command:
-
-```
-npm run client:build && npm run server
-```
-
-## Questions
-
-If you have any questions about the repo, open an issue or contact me directly at jefferson.chase18@gmail.com. You can find more of my work at [chase-jefferson](https://github.com/chase-jefferson/).
