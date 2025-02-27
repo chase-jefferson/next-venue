@@ -7,12 +7,15 @@ import App from "./App.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import Home from "./pages/Home.tsx";
 import Login from "./pages/Login.tsx";
+import UserProfile from "./pages/UserProfile.tsx";
+import CreateEvent from "./pages/CreateEventPage.tsx";
+import EventDetails from "./pages/EventDetailsPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -21,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/CreateEvent",
+        element: <CreateEvent />,
+      },
+      {
+        path: "/EventDetails",
+        element: <EventDetails />,
       },
       {
         path: "/profile",

@@ -20,7 +20,10 @@ const Home: React.FC = () => {
             weather updates and create RSVPs for you and your guests. Log in or
             register today to plan your next outing!
           </p>
-          <button className="bg-amber-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-amber-900 transition">
+          <button
+            className="bg-amber-700 text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-amber-900 transition"
+            onClick={() => (window.location.href = "/CreateEvent")}
+          >
             Create Event
           </button>
         </div>

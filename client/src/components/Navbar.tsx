@@ -7,9 +7,12 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-amber-700 p-4 flex justify-between items-center shadow-md">
-      <div className="text-white text-2xl font-family: 'Poppins', sans-serif italic">
+      <a
+        href="/"
+        className="text-white text-2xl font-family: 'Poppins', sans-serif italic"
+      >
         Next Venue
-      </div>
+      </a>
       <div className="flex gap-4">
         {isLoggedIn ? (
           <Button className="flex items-center gap-2 bg-orange-500 text-blue-600 hover:bg-gray-100">
