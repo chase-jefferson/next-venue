@@ -5,7 +5,6 @@ import { User } from '../../models/index.js';
 const router = express.Router();
 
 // GET /users - Get all users
-
 router.get('/', async (_req: Request, res: Response) => {
   try {
     const users = await User.findAll({
