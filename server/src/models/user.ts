@@ -1,3 +1,4 @@
+
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
 import bcrypt from 'bcrypt';
 
@@ -23,9 +24,9 @@ export class User
   public readonly updatedAt!: Date;
 
   // Hash the password before saving the user
-  public async setPassword(password: string) {
+  public static async setPassword(password: string): Promise<string> {
     const saltRounds = 10;
-    this.password = await bcrypt.hash(password, saltRounds);
+    return bcrypt.hash(password, saltRounds);
   }
 }
 
@@ -55,10 +56,14 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       sequelize,
       hooks: {
         beforeCreate: async (user: User) => {
-          await user.setPassword(user.password);
+          // Hash password before saving it
+          user.password = await User.setPassword(user.password);
         },
         beforeUpdate: async (user: User) => {
-          await user.setPassword(user.password);
+          // Hash password before updating it
+          if (user.changed('password')) {
+            user.password = await User.setPassword(user.password);
+          }
         },
       },
     }

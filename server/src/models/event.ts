@@ -1,13 +1,15 @@
-import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 
 interface EventAttributes {
   id: number;
-  eventName: string;
-  description: string;
-  location: string;
+  title: string;
+  description?: string;
   date: Date;
   time: string;
-  createdBy: string;
+  location: string;
+  organizerId: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 interface EventCreationAttributes extends Optional<EventAttributes, 'id'> {}
@@ -17,15 +19,14 @@ export class Event
   implements EventAttributes
 {
   public id!: number;
-  public eventName!: string;
-  public description!: string;
-  public location!: string;
+  public title!: string;
+  public description?: string;
   public date!: Date;
   public time!: string;
-  public createdBy!: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  public location!: string;
+  public organizerId!: number;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 export function EventFactory(sequelize: Sequelize): typeof Event {
@@ -33,40 +34,44 @@ export function EventFactory(sequelize: Sequelize): typeof Event {
     {
       id: {
         type: DataTypes.INTEGER,
-        defaultValue: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      eventName: {
-        type: DataTypes.STRING,
+      title: {
+        type: DataTypes.STRING(255),
         allowNull: false,
-        unique: true,
       },
       description: {
         type: DataTypes.TEXT,
         allowNull: true,
-      },
-      location: {
-        type: DataTypes.STRING,
-        allowNull: false,
       },
       date: {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
       time: {
-        type: DataTypes.TIME
+        type: DataTypes.TIME,
+        allowNull: false,
       },
-      createdBy: {
+      location: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      organizerId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: { model: 'users', key: 'id' }, // foreign key to user
-        onDelete: 'CASCADE'
+        references: {
+          model: 'users', // Assumes the `users` table exists and has an `id` column
+          key: 'id',
         },
+        onDelete: 'CASCADE',
+      },
     },
     {
       tableName: 'events',
       sequelize,
+      underscored: true,
+      timestamps: true,
     }
   );
 
