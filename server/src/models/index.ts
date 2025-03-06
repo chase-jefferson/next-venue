@@ -1,6 +1,6 @@
 import sequelize from '../config/connection.js';
 import { UserFactory } from './user.js';
-import { EventFactory } from './events.js';
+import { EventFactory } from './event.js';
 import { RSVPFactory } from './rsvp.js';
 
 const User = UserFactory(sequelize);

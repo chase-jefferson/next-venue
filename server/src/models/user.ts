@@ -1,5 +1,5 @@
-import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
-import bcrypt from 'bcrypt';
+import { DataTypes, type Sequelize, Model, type Optional } from "sequelize";
+import bcrypt from "bcrypt";
 
 interface UserAttributes {
   id: number;
@@ -7,8 +7,7 @@ interface UserAttributes {
   email: string;
   password: string;
 }
-
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
 
 export class User
   extends Model<UserAttributes, UserCreationAttributes>
@@ -23,9 +22,10 @@ export class User
   public readonly updatedAt!: Date;
 
   // Hash the password before saving the user
-  public async setPassword(password: string) {
+  public async setPassword(password: string): Promise<string> {
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
+    return this.password;
   }
 }
 
@@ -40,25 +40,32 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,  // Ensures usernames are unique
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,  // Ensures emails are unique
+        validate: {
+          isEmail: true, // Ensures a valid email format
+        },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
+      }
     },
     {
-      tableName: 'users',
+      tableName: "users",
       sequelize,
       hooks: {
         beforeCreate: async (user: User) => {
           await user.setPassword(user.password);
         },
         beforeUpdate: async (user: User) => {
-          await user.setPassword(user.password);
+          if (user.changed("password") && user.password) {
+            await user.setPassword(user.password);
+          }
         },
       },
     }
@@ -66,3 +73,5 @@ export function UserFactory(sequelize: Sequelize): typeof User {
 
   return User;
 }
+
+

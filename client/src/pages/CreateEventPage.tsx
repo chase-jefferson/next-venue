@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate for navigation
 import { createEvent } from "../components/eventDetails"; // API call to save event
 import { getAIWeather } from "../components/eventDetails"; // OpenAI integration
 
-const API_KEY = "YOUR_OPENWEATHER_API_KEY";
+const API_KEY = "6d108acbdb1fc897e09215a9b7d4ad1b";
 
 const CreateEvent = () => {
     const [title, setTitle] = useState("");
@@ -13,6 +14,8 @@ const CreateEvent = () => {
     const [weather, setWeather] = useState<string | null>(null);
     const [loadingWeather, setLoadingWeather] = useState(false);
     const [rsvp, setRSVP] = useState<"Yes" | "No" | "Maybe">("Yes"); // Default RSVP selection
+
+    const navigate = useNavigate();  // Initialize useNavigate
 
     // Fetch weather when the user enters a location
     const fetchWeather = async (location: string) => {
@@ -61,6 +64,11 @@ const CreateEvent = () => {
             console.error("Failed to create event:", err);
             alert("Failed to create event");
         }
+    };
+
+    // Navigate to the Event Details page (or list of events page)
+    const viewAllEvents = () => {
+        navigate("/events");  // Adjust this route based on where your events are listed
     };
 
     return (
@@ -163,9 +171,18 @@ const CreateEvent = () => {
                     Create Event
                 </button>
             </form>
+
+            {/* View All Events Button */}
+            <div className="mt-6 text-center">
+                <button 
+                    onClick={viewAllEvents} 
+                    className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                >
+                    View All Events
+                </button>
+            </div>
         </div>
     );
 };
 
 export default CreateEvent;
-

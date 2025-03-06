@@ -16,6 +16,13 @@ const login = async (userInfo: UserLogin) => {
       throw new Error('User information not retrieved, check network tab!');
     }
 
+    // Store the token in localStorage (or cookies, depending on your preference)
+    if (data.token) {
+      localStorage.setItem('token', data.token); // Store the token
+    } else {
+      throw new Error('No token received');
+    }
+
     return data;
   } catch (err) {
     console.log('Error from user login: ', err);
@@ -24,3 +31,4 @@ const login = async (userInfo: UserLogin) => {
 };
 
 export { login };
+

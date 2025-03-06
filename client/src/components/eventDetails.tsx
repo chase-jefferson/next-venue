@@ -44,4 +44,27 @@ export const getAIWeather = async (location: string): Promise<string> => {
     return `Weather for ${location}`;
 };
 
+// src/api/events.ts
+
+export const getAllEvents = async () => {
+    // Replace with your actual API call
+    return [
+        {
+            id: "1",
+            title: "Event 1",
+            description: "Description for event 1",
+            location: "Location 1",
+            date: "2023-10-01",
+            time: "10:00 AM",
+        },
+        {
+            id: "2",
+            title: "Event 2",
+            description: "Description for event 2",
+            location: "Location 2",
+            date: "2023-10-02",
+            time: "11:00 AM",
+        },
+    ];
+};
 

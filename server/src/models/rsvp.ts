@@ -4,9 +4,11 @@ interface RSVPAttributes {
     id?: number;
     eventId: number;
     userId: number;
-    status: 'Yes' | 'Maybe' | 'No';
+    status: 'Yes' | 'Maybe' | 'No' | 'going' | 'interested';
 
 }
+
+
 
 interface RSVPCreationAttributes extends Optional<RSVPAttributes, 'id'> {}
 
