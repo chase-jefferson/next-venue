@@ -13,8 +13,15 @@
     "@tailwindcss/vite": "^4.0.9",
     "clsx": "^2.1.1",
     "jwt-decode": "^4.0.0",
+<<<<<<< HEAD
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+=======
+    "next": "^15.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
     "react-router-dom": "^6.23.1",
     "tailwindcss": "^4.0.9"
   },

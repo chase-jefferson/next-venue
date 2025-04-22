@@ -1,6 +1,10 @@
 import React from "react";
 
+<<<<<<< HEAD
 import type { UserData } from "../interfaces/UserData";
+=======
+import type { UserData } from "../utils/types.ts";
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
 import auth from "../utils/auth";
 
 // Define the props for the component

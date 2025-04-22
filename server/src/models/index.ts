@@ -1,6 +1,10 @@
 import sequelize from '../config/connection.js';
 import { UserFactory } from './user.js';
+<<<<<<< HEAD
 import { EventFactory } from './events.js';
+=======
+import { EventFactory } from './event.js';
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
 import { RSVPFactory } from './rsvp.js';
 
 const User = UserFactory(sequelize);
@@ -29,4 +33,8 @@ export const syncDatabase = async () => {
     console.log('Database synced successfully');
 }
 
+<<<<<<< HEAD
 export default { User, Event, RSVP };
+=======
+export { User, Event, RSVP };
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800

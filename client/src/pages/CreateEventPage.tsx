@@ -1,8 +1,16 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import { createEvent } from "../components/eventDetails"; // API call to save event
 import { getAIWeather } from "../components/eventDetails"; // OpenAI integration
 
 const API_KEY = "YOUR_OPENWEATHER_API_KEY";
+=======
+import { useNavigate } from "react-router-dom";  // Import useNavigate for navigation
+import { createEvent } from "../components/eventDetails"; // API call to save event
+import { getAIWeather } from "../components/eventDetails"; // OpenAI integration
+
+const API_KEY = "6d108acbdb1fc897e09215a9b7d4ad1b";
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
 
 const CreateEvent = () => {
     const [title, setTitle] = useState("");
@@ -14,6 +22,11 @@ const CreateEvent = () => {
     const [loadingWeather, setLoadingWeather] = useState(false);
     const [rsvp, setRSVP] = useState<"Yes" | "No" | "Maybe">("Yes"); // Default RSVP selection
 
+<<<<<<< HEAD
+=======
+    const navigate = useNavigate();  // Initialize useNavigate
+
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
     // Fetch weather when the user enters a location
     const fetchWeather = async (location: string) => {
         if (!location) return;
@@ -63,6 +76,14 @@ const CreateEvent = () => {
         }
     };
 
+<<<<<<< HEAD
+=======
+    // Navigate to the Event Details page (or list of events page)
+    const viewAllEvents = () => {
+        navigate("/events");  // Adjust this route based on where your events are listed
+    };
+
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">Create an Event</h1>
@@ -163,9 +184,25 @@ const CreateEvent = () => {
                     Create Event
                 </button>
             </form>
+<<<<<<< HEAD
+=======
+
+            {/* View All Events Button */}
+            <div className="mt-6 text-center">
+                <button 
+                    onClick={viewAllEvents} 
+                    className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                >
+                    View All Events
+                </button>
+            </div>
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
         </div>
     );
 };
 
 export default CreateEvent;
+<<<<<<< HEAD
 
+=======
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800

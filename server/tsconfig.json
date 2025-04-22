@@ -2,12 +2,20 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     /* Modules */
+<<<<<<< HEAD
     "rootDir": "src" /* Specify the root folder within your source files. */,
+=======
+    "rootDir": "../" /* Specify the root folder within your source files. */,
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
 
     /* Emit */
     "outDir": "dist" /* Specify an output folder for all emitted files. */
     // "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */
   },
+<<<<<<< HEAD
   "include": ["src"],
+=======
+  "include": ["src", "../client/src/api/WeatherAPI.tsx"],
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
   "typeRoots": ["./node_modules/@types", "./src/types"]
 }

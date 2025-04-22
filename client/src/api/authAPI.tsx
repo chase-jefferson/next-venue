@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { UserLogin } from '../interfaces/UserLogin';
+=======
+import type { UserLogin } from '../utils/types.ts';
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
 
 const login = async (userInfo: UserLogin) => {
   try {
@@ -16,6 +20,16 @@ const login = async (userInfo: UserLogin) => {
       throw new Error('User information not retrieved, check network tab!');
     }
 
+<<<<<<< HEAD
+=======
+    // Store the token in localStorage (or cookies, depending on your preference)
+    if (data.token) {
+      localStorage.setItem('token', data.token); // Store the token
+    } else {
+      throw new Error('No token received');
+    }
+
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
     return data;
   } catch (err) {
     console.log('Error from user login: ', err);
@@ -24,3 +38,7 @@ const login = async (userInfo: UserLogin) => {
 };
 
 export { login };
+<<<<<<< HEAD
+=======
+
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800

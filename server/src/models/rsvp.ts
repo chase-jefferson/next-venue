@@ -4,10 +4,19 @@ interface RSVPAttributes {
     id?: number;
     eventId: number;
     userId: number;
+<<<<<<< HEAD
     status: 'Yes' | 'Maybe' | 'No';
 
 }
 
+=======
+    status: 'Yes' | 'Maybe' | 'No' | 'going' | 'interested';
+
+}
+
+
+
+>>>>>>> cbdd721bbdf0a525c4fb162977e91a26df614800
 interface RSVPCreationAttributes extends Optional<RSVPAttributes, 'id'> {}
 
 export class RSVP
